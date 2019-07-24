@@ -16,13 +16,18 @@ public class AdminServiceImpl implements AdminService {
     private AdminDao dao;
 
     @Override
-    public List<Admin> QueyrAll() {
+    public void add(Admin admin) {
+        dao.insert(admin);
+    }
+
+    @Override
+    public List<Admin> queryAll() {
         List<Admin> admins = dao.selectAll();
         return admins;
     }
 
     @Override
-    public Admin QueryOne(String username, String password) {
+    public Admin queryOne(String username, String password) {
         Admin admin = dao.selectOne(username);
             if(admin==null)throw new RuntimeException("用户未注册");
             if(!password.equals(admin.getPassword()))throw new RuntimeException("账号密码不正确");

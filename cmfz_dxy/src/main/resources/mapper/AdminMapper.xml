@@ -7,5 +7,8 @@
     <select id="selectOne" resultType="Admin">
         select admin_id id,username,password from c_admin where username=#{a}
     </select>
+    <insert id="insert">
+        insert into c_admin values (#{id},#{username},#{password})
+    </insert>
 </mapper>
 

@@ -30,7 +30,7 @@ public class controller {
     @RequestMapping("login")
     public String login(String username, String password, Model model, HttpSession session){
         try {
-            Admin admin = service.QueryOne(username, password);
+            Admin admin = service.queryOne(username, password);
             model.addAttribute("admin",admin);
             session.setAttribute("admin",admin);
             return "jsp/main";

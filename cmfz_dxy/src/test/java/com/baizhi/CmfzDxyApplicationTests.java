@@ -17,7 +17,7 @@ public class CmfzDxyApplicationTests {
     AdminService service;
     @Test
     public void contextLoads() {
-        Admin admin = service.QueryOne("1", "2");
+        Admin admin = service.queryOne("1", "2");
         System.out.println(admin);
     }
 

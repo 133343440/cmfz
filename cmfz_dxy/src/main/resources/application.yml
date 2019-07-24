@@ -22,6 +22,8 @@ spring:
     multipart:
       max-file-size: 30MB
       max-request-size: 30MB
+  redis:
+    host: 192.168.50.66
 
 mybatis:
   type-aliases-package: com.baizhi.entity
@@ -40,4 +42,3 @@ logging:
   level:
     root: error
     com.baizhi.dao: debug
-
