@@ -10,10 +10,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Admin implements Serializable {
-    private String id;
-    private String username;
-    private String password;
-    private String salt;
-    private List<Role> roles;
+public class Role implements Serializable {
+    private  String id;
+    private String RoleName;
+    private List<Authority> authorities;
 }

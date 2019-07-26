@@ -51,7 +51,7 @@
             <div class="panel-heading"><strong><h2>管理登录</h2></strong></div>
             <div class="panel-body">
                 <span style="color:red;font-size: 21px;margin-left: 45px;">${message}</span>
-                <form action="/cmfz/p1/login" method="post">
+                <form action="${pageContext.request.contextPath}/p1/login" method="post">
                 <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1"><strong>账号</strong></span>
                     <input type="text" name="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1">

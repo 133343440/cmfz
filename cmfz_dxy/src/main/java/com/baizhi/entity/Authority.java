@@ -5,15 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Admin implements Serializable {
+public class Authority implements Serializable {
     private String id;
-    private String username;
-    private String password;
-    private String salt;
-    private List<Role> roles;
+    private String authorityName;
+
 }

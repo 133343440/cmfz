@@ -1,4 +1,5 @@
 <%@page isELIgnored="false" pageEncoding="UTF-8" contentType="text/html; UTF-8" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!doctype html>
 
 <html lang="en">
@@ -40,9 +41,9 @@
             <%--内容--%>
             <div class="collapse navbar-collapse" id="div1">
                 <p class="navbar-text navbar-right">
-                    欢迎：${admin.username}<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    欢迎：<font color="red"><shiro:principal></shiro:principal></font><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                     &nbsp;&nbsp;&nbsp;
-                    <a href="${pageContext.request.contextPath}/p1/exit" class="navbar-link">
+                    <a href="${pageContext.request.contextPath}/p1/logout" class="navbar-link">
                    退出登录 <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a></p>
             </div>
         </div>
@@ -68,6 +69,7 @@
                         </div>
                     </div>
                 </div>
+                <shiro:hasRole name="admin">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingTwo">
                         <h4 class="panel-title">
@@ -100,6 +102,8 @@
                         </div>
                     </div>
                 </div>
+                </shiro:hasRole>
+                <shiro:hasRole name="vip">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingThree1">
                         <h4 class="panel-title">
@@ -117,6 +121,7 @@
                         </div>
                     </div>
                 </div>
+                </shiro:hasRole>
             </div>
         </div>
 

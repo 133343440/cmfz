@@ -5,6 +5,12 @@ import com.baizhi.entity.Admin;
 import com.baizhi.entity.Carousel;
 import com.baizhi.service.AdminService;
 import com.baizhi.service.CarouselService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,24 +34,28 @@ public class controller {
     @Autowired
     private AdminService service;
     @RequestMapping("login")
-    public String login(String username, String password, Model model, HttpSession session){
+    public String login(Admin admin){
+        //获取主题
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken authenticationToken = new UsernamePasswordToken(admin.getUsername(),admin.getPassword());
         try {
-            Admin admin = service.QueryOne(username, password);
-            model.addAttribute("admin",admin);
-            session.setAttribute("admin",admin);
+            subject.login(authenticationToken);
             return "jsp/main";
-        } catch (Exception e ) {
-            model.addAttribute("message",e.getMessage());
+        } catch (UnknownAccountException e) {
+            System.out.println("账号不正确");
+            return "jsp/login";
+        }catch (IncorrectCredentialsException i){
+            System.out.println("密码不正确");
             return "jsp/login";
         }
     }
 
 
-
-    @RequestMapping("exit")
-    public String exit(HttpSession session){
-        session.removeAttribute("admin");
-        return "/jsp/login";
+    @RequestMapping("logout")
+    public String logout(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "jsp/login";
     }
 
 
